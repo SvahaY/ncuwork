@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 import requests
 #import Pytesseract//识别验证码的库，暂时不用
 from PIL import Image
@@ -13,10 +10,6 @@ import pandas as pd
 import bs4
 import time
 import sys
-
-
-# In[2]:
-
 
 #获取登陆信息
 def getInfo():
@@ -28,10 +21,6 @@ def getInfo():
     formdata = {'encoded':'ODAwMTcxNjA1OQ==%%%Ynp5MTU3NzA4MTA2NTA=','RANDOMCODE':safecode}
     return formdata
 
-
-# In[3]:
-
-
 #处理验证码
 #可以使用第三方库，但准确率不高，所以弃用，选择让用户自己识别
 def getSafeCode():
@@ -39,15 +28,9 @@ def getSafeCode():
     plt.figure("safecode",figsize=(2,4))
     plt.imshow(pil_im)
     plt.axis('off')
-    plt.show()
-    
-    safecode = input("输入验证码：")
-    
+    plt.show()  
+    safecode = input("输入验证码：") 
     return safecode
-
-
-# In[4]:
-
 
 #登陆
 def login():
@@ -134,11 +117,6 @@ def login():
         #print(type(table_node)) 
         tablearray.append(table_node)
     return tablearray
- 
-
-
-# In[12]:
-
 
 #获取一个ndarray
 all_ar = []
@@ -164,10 +142,6 @@ def get_raw_info(tablearray):
         sys.exit(1)
         print("请断开其他访问连接或重新连接...")
 
-
-# In[13]:
-
-
 def get_info():
     #获得初始信息
     raw_info = get_raw_info(login())
@@ -190,14 +164,7 @@ def get_info():
         df = pd.DataFrame([info_dic], index=["学分"]) 
     return df
 
-
-# In[14]:
-
-
 get_info()
-
-
-# In[ ]:
 
 
 
